@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import HomePage from "./scenes/homePage";
+import HomePage from "./scenes/landingPage";
 
 function App() {
   return (

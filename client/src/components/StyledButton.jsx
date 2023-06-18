@@ -3,8 +3,9 @@ import { styled } from "@mui/system";
 
 const StyledButton = styled(Button)({
   color: "white",
+  padding: "8px 20px",
+  whiteSpace: "nowrap",
   backgroundColor: "#434A51",
-  borderRadius: "10px",
   "&:hover": {
     backgroundColor: "#59616A",
   },
