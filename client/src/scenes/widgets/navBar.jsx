@@ -1,5 +1,4 @@
-import { AppBar, Toolbar, Typography, Box, styled } from "@mui/material";
-
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import StyledButton from "../../components/StyledButton";
 import MinimalButton from "../../components/MinimalButton";
 
@@ -18,21 +17,17 @@ const NavBar = () => {
           padding: "0.5rem",
         }}
       >
-        <Typography
-          variant="h3"
-          sx={{
-            flexGrow: 1,
-            fontWeight: "bolder",
-            fontFmaily: "Lato",
-            margin: "2rem",
-          }}
-        >
+        <Typography variant="h2" flexGrow={1}>
           ventEvent
         </Typography>
         <Box sx={{ display: "flex", gap: "1rem" }}>
-          <MinimalButton disableRipple>About</MinimalButton>
+          <MinimalButton disableRipple>
+            <Typography variant="h6">About</Typography>
+          </MinimalButton>
           {/* <MinimalButton disableRipple>FAQ</MinimalButton> */}
-          <StyledButton sx={{ margin: "2rem" }}>Log In</StyledButton>
+          <StyledButton sx={{ margin: "2rem" }}>
+            <Typography variant="h6">Log In</Typography>
+          </StyledButton>
         </Box>
       </Toolbar>
     </AppBar>
