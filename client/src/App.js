@@ -7,11 +7,11 @@ function App() {
   const theme = themeSettings;
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
           <HomePage />
-        </BrowserRouter>
-      </ThemeProvider>
+        </ThemeProvider>
+      </BrowserRouter>
     </div>
   );
 }
