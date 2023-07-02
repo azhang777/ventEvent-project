@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
 // CONFIG
 dotenv.config();
 const app = express();
@@ -19,10 +20,8 @@ app.use(cors());
 
 // ROUTES
 app.use("/auth", authRoutes);
-app.get("/api/test", (req, res) => {
-  // Handle the request and send a response
-  res.json({ message: "Backend is working!" });
-});
+app.use("/users", userRoutes);
+
 // MONGOOSE & STARTUP
 const PORT = process.env.PORT || 6001;
 
