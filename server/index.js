@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
-
 app.use(cors());
 
 // ROUTES
@@ -34,5 +33,6 @@ mongoose
     app.listen(PORT, () => console.log(`Listening to PORT ${PORT}`));
   })
   .catch((error) => {
-    console.log(error.message);
+    console.log(error.message + " server");
+    Uehh6eQdR5AyC1Mh;
   });
