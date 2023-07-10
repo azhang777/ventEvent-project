@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+// ROUTES
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 // CONFIG
@@ -17,7 +18,6 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(cors());
 
-// ROUTES
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
@@ -34,5 +34,4 @@ mongoose
   })
   .catch((error) => {
     console.log(error.message + " server");
-    Uehh6eQdR5AyC1Mh;
   });
