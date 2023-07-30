@@ -1,20 +1,161 @@
-// import { useState } from "react";
-// import {
-//   Box,
-//   Button,
-//   TextField,
-//   useMediaQuery,
-//   Typography,
-//   useTheme,
-//   styled,
-// } from "@mui/material";
-// import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-// import { Formik } from "formik";
-// import * as yup from "yup";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { setLogin } from "state";
-// import FlexBetween from "../../components/FlexBetween";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
+
+const basicSchema = yup.object().shape({
+  email: yup.string().email("Please enter a valid email").required("Required"),
+  age: yup.number().positive().integer().required("Required"),
+  password: yup
+    .string()
+    .min(5)
+    .matches(passwordRules, { message: "Please create a stronger password" })
+    .required("Required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Required"),
+});
+
+const advancedSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(3, "Username must be at least 3 characters long")
+    .required("Required"),
+  jobType: yup
+    .string()
+    .oneOf(["designer", "developer", "manager", "other"], "Invalid Job Type")
+    .required("Required"),
+  acceptedTos: yup
+    .boolean()
+    .oneOf([true], "Please accept the terms of service"),
+});
+
+const onSubmit = async (values, actions) => {
+  console.log(values);
+  console.log(actions);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  actions.resetForm();
+};
+
+const BasicForm = () => {
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      age: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: basicSchema,
+    onSubmit,
+  });
+
+  console.log(errors);
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      autoComplete='off'
+    >
+      <label htmlFor='email'>Email</label>
+      <input
+        value={values.email}
+        onChange={handleChange}
+        id='email'
+        type='email'
+        placeholder='Enter your email'
+        onBlur={handleBlur}
+        className={errors.email && touched.email ? "input-error" : ""}
+      />
+      {errors.email && touched.email && <p className='error'>{errors.email}</p>}
+      <label htmlFor='age'>Age</label>
+      <input
+        id='age'
+        type='number'
+        placeholder='Enter your age'
+        value={values.age}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={errors.age && touched.age ? "input-error" : ""}
+      />
+      {errors.age && touched.age && <p className='error'>{errors.age}</p>}
+      <label htmlFor='password'>Password</label>
+      <input
+        id='password'
+        type='password'
+        placeholder='Enter your password'
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={errors.password && touched.password ? "input-error" : ""}
+      />
+      {errors.password && touched.password && (
+        <p className='error'>{errors.password}</p>
+      )}
+      <label htmlFor='confirmPassword'>Confirm Password</label>
+      <input
+        id='confirmPassword'
+        type='password'
+        placeholder='Confirm password'
+        value={values.confirmPassword}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={
+          errors.confirmPassword && touched.confirmPassword ? "input-error" : ""
+        }
+      />
+      {errors.confirmPassword && touched.confirmPassword && (
+        <p className='error'>{errors.confirmPassword}</p>
+      )}
+      <button
+        disabled={isSubmitting}
+        type='submit'
+      >
+        Submit
+      </button>
+    </form>
+  );
+};
+export default BasicForm;
+
+/* import { useState } from "react";
+import {
+  Box,
+  Button,
+  TextField,
+  useMediaQuery,
+  Typography,
+  useTheme,
+  styled,
+} from "@mui/material";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { Formik } from "formik";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import FlexBetween from "../../components/FlexBetween";
+
+const registerSchema = yup.object().shape({
+  firstName: yup.string().required("required"),
+  lastName: yup.string().required("required"),
+  email: yup.string().email("invalid email").required("required"),
+  username: yup.string().required("required"),
+  password: yup.string().required("required"),
+});
+
+const loginSchema = yup.object().shape({
+  email: yup.string().email("invalid email").required("required"),
+  password: yup.string().required("required"),
+}); */
 
 // const registerSchema = yup.object().shape({
 //   firstName: yup.string().required("required"),
