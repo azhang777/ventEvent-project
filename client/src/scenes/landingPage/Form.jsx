@@ -39,7 +39,7 @@ const onSubmit = async (values, actions) => {
   actions.resetForm();
 };
 
-const BasicForm = () => {
+const Form = () => {
   const {
     values,
     errors,
@@ -125,7 +125,7 @@ const BasicForm = () => {
     </form>
   );
 };
-export default BasicForm;
+export default Form;
 
 /* import { useState } from "react";
 import {
