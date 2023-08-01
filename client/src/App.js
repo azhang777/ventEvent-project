@@ -10,7 +10,6 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={theme}>
         <HomePage />
-
         <Form />
       </ThemeProvider>
     </div>

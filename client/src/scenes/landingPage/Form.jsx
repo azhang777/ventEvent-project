@@ -1,10 +1,11 @@
-import { useFormik } from "formik";
+//import { useFormik } from "formik";
 import * as yup from "yup";
+import { Field, Form, Formik } from "formik";
+import CustomInput from "../../components/CustomInput";
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
-// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
 
-const basicSchema = yup.object().shape({
+/* const basicSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   age: yup.number().positive().integer().required("Required"),
   password: yup
@@ -16,7 +17,7 @@ const basicSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("Required"),
-});
+}); */
 
 const advancedSchema = yup.object().shape({
   username: yup
@@ -39,8 +40,8 @@ const onSubmit = async (values, actions) => {
   actions.resetForm();
 };
 
-const Form = () => {
-  const {
+const advancedForm = () => {
+  /*   const {
     values,
     errors,
     touched,
@@ -60,9 +61,50 @@ const Form = () => {
   });
 
   console.log(errors);
-
+ */
   return (
-    <form
+    <Formik
+      initialValues={{ username: "", jobType: "", acceptedTos: false }}
+      validationSchema={advancedSchema}
+      /*       validate={(values) => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        return errors;
+      }} */
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        /* and other goodies */
+      }) => (
+        <Form>
+          <CustomInput
+            label='email'
+            name='email'
+            type='text'
+            placeholder='Enter email'
+          />
+          <button
+            type='submit'
+            disabled={isSubmitting}
+          >
+            Submit
+          </button>
+        </Form>
+      )}
+    </Formik>
+    /*  <form
       onSubmit={handleSubmit}
       autoComplete='off'
     >
@@ -122,10 +164,10 @@ const Form = () => {
       >
         Submit
       </button>
-    </form>
+    </form> */
   );
 };
-export default Form;
+export default advancedForm;
 
 /* import { useState } from "react";
 import {
