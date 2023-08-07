@@ -23,3 +23,5 @@ export const authSlice = createSlice({
 //two states for now in order to set up form handling.
 export const { setLogin, setLogout } = authSlice.actions;
 export default authSlice.reducer;
+
+//important link https://github.com/reduxjs/redux/issues/1287#issuecomment-175351978

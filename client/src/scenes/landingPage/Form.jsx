@@ -1,7 +1,9 @@
 //import { useFormik } from "formik";
-import * as yup from "yup";
+import * as yup from "yup"; //* imports everything from dependency
 import { Field, Form, Formik } from "formik";
 import CustomInput from "../../components/CustomInput";
+import CustomCheckbox from "../../components/CustomCheckbox";
+import CustomSelect from "../../components/CustomSelect";
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
@@ -19,14 +21,12 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
     .required("Required"),
 }); */
 
-const advancedSchema = yup.object().shape({
-  username: yup
+const registerSchema = yup.object().shape({
+  email: yup.string().email("Please enter a valid email").required("Required"),
+  password: yup
     .string()
-    .min(3, "Username must be at least 3 characters long")
-    .required("Required"),
-  jobType: yup
-    .string()
-    .oneOf(["designer", "developer", "manager", "other"], "Invalid Job Type")
+    .min(5)
+    .matches(passwordRules, { message: "Please create a stronger password" })
     .required("Required"),
   acceptedTos: yup
     .boolean()
@@ -41,50 +41,13 @@ const onSubmit = async (values, actions) => {
 };
 
 const advancedForm = () => {
-  /*   const {
-    values,
-    errors,
-    touched,
-    isSubmitting,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      age: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: basicSchema,
-    onSubmit,
-  });
-
-  console.log(errors);
- */
   return (
     <Formik
-      initialValues={{ username: "", jobType: "", acceptedTos: false }}
-      validationSchema={advancedSchema}
-      /*       validate={(values) => {
-        const errors = {};
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        return errors;
-      }} */
+      initialValues={{ email: "", password: "", acceptedTos: false }}
+      validationSchema={registerSchema}
+      onSubmit={onSubmit}
     >
       {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
         isSubmitting,
         /* and other goodies */
       }) => (
@@ -94,6 +57,16 @@ const advancedForm = () => {
             name='email'
             type='text'
             placeholder='Enter email'
+          />
+          <CustomInput
+            label='password'
+            name='password'
+            type='password'
+            placeholder='Create password'
+          />
+          <CustomCheckbox
+            type='checkbox'
+            name='acceptedTos'
           />
           <button
             type='submit'

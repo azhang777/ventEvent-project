@@ -1,6 +1,6 @@
 import { useField } from "formik"; //hooks custom inputs to formik (share state, helpers, etc)
 
-const CustomInput = ({ label, ...props }) => {
+const CustomSelect = ({ label, ...props }) => {
   //destructure label and spread props which contains properties such as name, type, placeholder, etc
   const [field, meta] = useField(props);
   // console.log("field" + field);
@@ -9,7 +9,7 @@ const CustomInput = ({ label, ...props }) => {
   return (
     <>
       <label>{label}</label>
-      <input
+      <select
         {...field}
         {...props}
         className={meta.touched && meta.error ? "input-error" : ""}
@@ -19,4 +19,4 @@ const CustomInput = ({ label, ...props }) => {
   );
 };
 
-export default CustomInput;
+export default CustomSelect;

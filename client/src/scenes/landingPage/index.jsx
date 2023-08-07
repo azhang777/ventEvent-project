@@ -16,28 +16,32 @@ const HomePage = () => {
   return (
     <Box>
       <NavBar />
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}></Grid>
+      <Grid
+        container
+        spacing={2}
+      >
         <Grid
           item
-          xs={12}
+          xs={6}
+          md={6}
+        ></Grid>
+        <Grid
+          item
+          xs={6}
           md={6}
           sx={{ marginTop: "25vh", marginBottom: "2rem" }}
         >
           {/* Right Section */}
-          <Typography variant="h1">For Adventurers</Typography>
-          <Typography variant="h2">Another way to connect</Typography>
-          <form>
-            <TextField label="Name" fullWidth margin="normal" />
-            <TextField label="Email" fullWidth margin="normal" />
-            <Button variant="contained" color="primary" type="submit">
-              Sign Up
-            </Button>
-          </form>
+          <Typography variant='h1'>For Adventurers</Typography>
+          <Typography variant='h2'>Another way to connect</Typography>
+          //
+          <Form />
         </Grid>
       </Grid>
     </Box>
   );
 };
 
+//https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+//https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints
 export default HomePage;
