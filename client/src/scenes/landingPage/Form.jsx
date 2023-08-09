@@ -25,8 +25,8 @@ const registerSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   password: yup
     .string()
-    .min(5)
-    .matches(passwordRules, { message: "Please create a stronger password" })
+    .min(5, "Minimum length of 5")
+    .matches(passwordRules, "Please create a stronger password")
     .required("Required"),
   acceptedTos: yup
     .boolean()
@@ -53,16 +53,14 @@ const advancedForm = () => {
       }) => (
         <Form>
           <CustomInput
-            label='email'
+            label='Email'
             name='email'
             type='text'
-            placeholder='Enter email'
           />
           <CustomInput
-            label='password'
+            label='Password'
             name='password'
             type='password'
-            placeholder='Create password'
           />
           <CustomCheckbox
             type='checkbox'

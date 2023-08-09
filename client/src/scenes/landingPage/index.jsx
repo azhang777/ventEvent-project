@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Typography,
   Box,
@@ -5,6 +6,7 @@ import {
   Grid,
   Button,
   TextField,
+  Dialog,
 } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import NavBar from "../widgets/navBar";
@@ -13,6 +15,12 @@ import Form from "./Form";
 //min width 1000px for desktop, otherwise go to mobile view
 
 const HomePage = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  }; //MAKE POPUP FEATURE A COMPONENT? HOW WOULD I HANDLE TOGGLE STATES? WOULD IT BE IN INDIVIUAL AREAS OR IS THE STATE IN THE COMPONENT ITSELF?
+
   return (
     <Box>
       <NavBar />
@@ -39,13 +47,24 @@ const HomePage = () => {
             container
             direction='column'
             alignItems='flex-start'
-            sx={{ margin: "40px 0" }}
+            sx={{ margin: "60px 0" }}
           >
             <Typography variant='h1'>For Adventurers</Typography>
             <Typography variant='h2'>Another way to connect</Typography>
           </Grid>
           <Grid item>
-            <Form />
+            <Button
+              variant='contained'
+              onClick={handleToggle}
+            >
+              Sign in
+            </Button>
+            <Dialog
+              open={toggle}
+              onClick={handleToggle}
+            >
+              <Form />
+            </Dialog>
           </Grid>
         </Grid>
       </Grid>
