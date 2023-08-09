@@ -3,7 +3,7 @@ import * as yup from "yup"; //* imports everything from dependency
 import { Field, Form, Formik } from "formik";
 import CustomInput from "../../components/CustomInput";
 import CustomCheckbox from "../../components/CustomCheckbox";
-import CustomSelect from "../../components/CustomSelect";
+//import CustomSelect from "../../components/CustomSelect";
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 

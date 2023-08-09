@@ -20,22 +20,33 @@ const HomePage = () => {
         container
         spacing={2}
       >
+        {/* Left Section */}
         <Grid
           item
-          xs={6}
+          xs={12}
           md={6}
-        ></Grid>
-        <Grid
-          item
-          xs={6}
-          md={6}
-          sx={{ marginTop: "25vh", marginBottom: "2rem" }}
         >
-          {/* Right Section */}
-          <Typography variant='h1'>For Adventurers</Typography>
-          <Typography variant='h2'>Another way to connect</Typography>
-          //
-          <Form />
+          left
+        </Grid>
+
+        {/* Right Section */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+        >
+          <Grid
+            container
+            direction='column'
+            alignItems='flex-start'
+            sx={{ margin: "40px 0" }}
+          >
+            <Typography variant='h1'>For Adventurers</Typography>
+            <Typography variant='h2'>Another way to connect</Typography>
+          </Grid>
+          <Grid item>
+            <Form />
+          </Grid>
         </Grid>
       </Grid>
     </Box>

@@ -1,10 +1,16 @@
 import { useField } from "formik";
-
-const CustomCheckbox = ({ label, ...props }) => {
+import { Checkbox } from "@mui/material";
+const CustomCheckbox = ({ name, ...props }) => {
   const [field, meta] = useField(props);
 
+  const configCheckBox = { ...field, ...props, name };
   return (
     <>
+      <Checkbox {...configCheckBox} />
+      <span>I accept TOS</span>
+    </>
+
+    /*     <>
       <div>
         <input
           {...field}
@@ -15,7 +21,7 @@ const CustomCheckbox = ({ label, ...props }) => {
         <span>I accept TOS</span>
       </div>
       {meta.touched && meta.error && <div className='error'>{meta.error}</div>}
-    </>
+    </> */
   );
 };
 
