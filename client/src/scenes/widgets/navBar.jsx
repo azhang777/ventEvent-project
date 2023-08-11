@@ -5,7 +5,7 @@ import MinimalButton from "../../components/MinimalButton";
 const NavBar = () => {
   return (
     <AppBar
-      position="static"
+      position='static'
       sx={{ backgroundColor: "transparent", boxShadow: "none" }}
     >
       <Toolbar
@@ -17,16 +17,20 @@ const NavBar = () => {
           padding: "0.5rem",
         }}
       >
-        <Typography variant="h2" flexGrow={1}>
+        <Typography
+          variant='h3'
+          flexGrow={1}
+        >
           ventEvent
         </Typography>
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <MinimalButton disableRipple>
-            <Typography variant="h6">About</Typography>
+            <Typography variant='h6'>About</Typography>{" "}
+            {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
           </MinimalButton>
           {/* <MinimalButton disableRipple>FAQ</MinimalButton> */}
           <StyledButton sx={{ margin: "2rem" }}>
-            <Typography variant="h6">Log In</Typography>
+            <Typography variant='h6'>Log In</Typography>
           </StyledButton>
         </Box>
       </Toolbar>

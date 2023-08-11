@@ -8,9 +8,6 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
     "@reduxjs/toolkit": "^1.9.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.3.0",
     "formik": "^2.4.2",
     "react": "^18.2.0",
@@ -25,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,5 +42,33 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@babel/register"
+    ],
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "**/__tests__/**/*.js?(x)",
+      "**/?(*.)+(spec|test).js?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/register": "^7.22.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.6.2",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
   }
 }

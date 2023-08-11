@@ -1,17 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
+//import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import HomePage from "./scenes/landingPage";
-import { themeSettings } from "./theme";
+import Form from "./scenes/landingPage/Form";
 
 function App() {
-  const theme = themeSettings;
   return (
-    <div className="App">
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <HomePage />
-        </ThemeProvider>
-      </BrowserRouter>
+    <div className='App'>
+      <HomePage />
     </div>
   );
 }

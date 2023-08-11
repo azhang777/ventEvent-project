@@ -5,19 +5,21 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-
+// ROUTES
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
 // CONFIG
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// ROUTES
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 // MONGOOSE & STARTUP
 const PORT = process.env.PORT || 6001;
@@ -31,5 +33,5 @@ mongoose
     app.listen(PORT, () => console.log(`Listening to PORT ${PORT}`));
   })
   .catch((error) => {
-    console.log(error.message);
+    console.log(error.message + " server");
   });

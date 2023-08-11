@@ -16,4 +16,16 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  isMatching: {
+    type: Boolean,
+    default: false,
+  },
+  matchStatus: {
+    type: String,
+    enum: ["not matching", "pending", "matched"],
+    default: "not matching",
+  },
 });
+
+const User = mongoose.model("User", UserSchema);
+export default User;
