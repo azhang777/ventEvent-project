@@ -4,15 +4,8 @@ import { styled } from "@mui/system";
 const MinimalButton = styled(Button)({
   color: "inherit",
   "&:hover": {
+    color: "#434A51",
     backgroundColor: "transparent",
-    color: "inherit",
-  },
-  "&:active": {
-    backgroundColor: "transparent",
-    color: "inherit",
-  },
-  "&:focus": {
-    outline: "none",
   },
 });
 

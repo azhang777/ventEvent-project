@@ -5,23 +5,23 @@ export const themeSettings = createTheme({
   typography: {
     h1: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 85,
+      fontSize: "5em",
       fontWeight: 700,
       letterSpacing: 2,
     },
     h2: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 40,
+      fontSize: "3em",
       fontWeight: 700,
     },
     h3: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 30,
-      fontWeight: 400,
+      fontSize: "2.5em",
+      fontWeight: 700,
     },
     h4: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 20,
+      fontSize: "1em",
     },
     h5: {
       fontFamily: ["Arial", "Lato"],
