@@ -67,7 +67,7 @@ const HomePage = () => {
               PaperProps={{
                 style: {
                   width: "60%", // Adjust the width as needed
-                  height: "45%", // Adjust the height as needed
+                  height: "40%", // Adjust the height as needed
                   maxWidth: "none", // Remove maxWidth to prevent width restriction
                 },
               }}

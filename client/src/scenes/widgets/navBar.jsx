@@ -25,7 +25,8 @@ const NavBar = () => {
         </Typography>
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <MinimalButton disableRipple>
-            <Typography variant='h6'>About</Typography>
+            <Typography variant='h6'>About</Typography>{" "}
+            {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
           </MinimalButton>
           {/* <MinimalButton disableRipple>FAQ</MinimalButton> */}
           <StyledButton sx={{ margin: "2rem" }}>

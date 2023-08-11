@@ -10,8 +10,11 @@ const CustomInput = ({ name, ...props }) => {
     ...props,
     fullwidth: true,
     variant: "outlined",
-    fullWidth: true,
-    sx: { margin: "0.7em 0" },
+    sx: {
+      margin: "0.7em 0",
+      display: "flex",
+      minHeight: "80px",
+    },
   };
 
   if (meta.touched && meta.error) {

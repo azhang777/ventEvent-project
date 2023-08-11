@@ -68,6 +68,7 @@ const advancedForm = () => {
             sx={{
               display: "flex",
               alignItems: "center",
+              position: "relative",
             }}
           >
             <CustomCheckbox
