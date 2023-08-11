@@ -10,6 +10,8 @@ const CustomInput = ({ name, ...props }) => {
     ...props,
     fullwidth: true,
     variant: "outlined",
+    fullWidth: true,
+    sx: { margin: "0.7em 0" },
   };
 
   if (meta.touched && meta.error) {
@@ -17,10 +19,12 @@ const CustomInput = ({ name, ...props }) => {
     configTextField.helperText = meta.error;
   } //renders validation and requirement. .error and .helperText are props to TextField. We then pass values to those props for the TextField to later use.
 
-  return (
-    <TextField {...configTextField} />
+  return <TextField {...configTextField} />;
+};
 
-    /* <>
+export default CustomInput;
+
+/* <>
       <name>{name}</name>
       <input
         {...field}
@@ -29,7 +33,3 @@ const CustomInput = ({ name, ...props }) => {
       />
       {meta.touched && meta.error && <div className='error'>{meta.error}</div>}
     </> */
-  );
-};
-
-export default CustomInput;

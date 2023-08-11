@@ -1,16 +1,52 @@
-import { useField } from "formik";
-import { Checkbox } from "@mui/material";
-const CustomCheckbox = ({ name, ...props }) => {
-  const [field, meta] = useField(props);
+import { useField, useFormikContext } from "formik";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+} from "@mui/material";
+import { Box } from "@mui/material";
+const CustomCheckbox = ({ name, label, legend, ...props }) => {
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(name);
 
-  const configCheckBox = { ...field, ...props, name };
+  const handleChange = (event) => {
+    const { checked } = event.target;
+    setFieldValue(name, checked);
+  };
+
+  const configCheckBox = { ...field, onChange: handleChange };
+
+  const configFormControl = {};
+
+  if (meta.touched && meta.error) {
+    configFormControl.error = true;
+  }
+
   return (
-    <>
-      <Checkbox {...configCheckBox} />
-      <span>I accept TOS</span>
-    </>
+    <FormControl {...configFormControl}>
+      <FormGroup>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <FormLabel
+            component='legend'
+            sx={{ marginRight: "16px" }}
+          >
+            {legend}
+          </FormLabel>
+          <FormControlLabel
+            control={<Checkbox {...configCheckBox} />}
+            label={label}
+          />
+        </Box>
+      </FormGroup>
+    </FormControl>
+  );
+};
 
-    /*     <>
+export default CustomCheckbox;
+
+/*     <>
       <div>
         <input
           {...field}
@@ -22,7 +58,3 @@ const CustomCheckbox = ({ name, ...props }) => {
       </div>
       {meta.touched && meta.error && <div className='error'>{meta.error}</div>}
     </> */
-  );
-};
-
-export default CustomCheckbox;

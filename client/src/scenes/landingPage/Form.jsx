@@ -4,7 +4,8 @@ import { Field, Form, Formik } from "formik";
 import CustomInput from "../../components/CustomInput";
 import CustomCheckbox from "../../components/CustomCheckbox";
 //import CustomSelect from "../../components/CustomSelect";
-
+import CustomSubmit from "../../components/CustomSubmit";
+import { Box } from "@mui/material";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 /* const basicSchema = yup.object().shape({
@@ -30,7 +31,8 @@ const registerSchema = yup.object().shape({
     .required("Required"),
   acceptedTos: yup
     .boolean()
-    .oneOf([true], "Please accept the terms of service"),
+    .oneOf([true], "Please accept the terms of service")
+    .required("Please read and accept terms of service"),
 });
 
 const onSubmit = async (values, actions) => {
@@ -62,16 +64,19 @@ const advancedForm = () => {
             name='password'
             type='password'
           />
-          <CustomCheckbox
-            type='checkbox'
-            name='acceptedTos'
-          />
-          <button
-            type='submit'
-            disabled={isSubmitting}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
           >
-            Submit
-          </button>
+            <CustomCheckbox
+              name='acceptedTos'
+              legend='Terms of Service'
+              label='I agree'
+            />
+            <CustomSubmit>Register</CustomSubmit>
+          </Box>
         </Form>
       )}
     </Formik>
