@@ -44,18 +44,25 @@ const initialValuesRegister = {
 
 const onSubmit = async (values, actions) => {
   try {
-    const formData = new FormData();
+    /* const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
-    }
+    } */
 
-    console.log(formData);
+    console.log(values);
     console.log(actions);
 
     const response = await fetch("http://localhost:6001/auth/register", {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
     });
+    /*     const response = await fetch("http://localhost:6001/auth/register", {
+      method: "POST",
+      body: formData,
+    }); */
 
     const savedUser = await response.json();
     console.log(savedUser);
