@@ -8,7 +8,7 @@ const CustomSubmit = ({ children, ...props }) => {
   };
 
   const configButton = {
-    fullWith: true,
+    fullWidth: false,
     onClick: handleSubmit,
     sx: { fontSize: "0.9em", marginLeft: "auto" },
   };

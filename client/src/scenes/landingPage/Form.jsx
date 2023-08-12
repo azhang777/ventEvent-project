@@ -23,6 +23,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 }); */
 
 const registerSchema = yup.object().shape({
+  username: yup.string().required("Required"),
   email: yup.string().email("Please enter a valid email").required("Required"),
   password: yup
     .string()
@@ -35,17 +36,45 @@ const registerSchema = yup.object().shape({
     .required("Please read and accept terms of service"),
 });
 
-const onSubmit = async (values, actions) => {
-  console.log(values);
-  console.log(actions);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
+const initialValuesRegister = {
+  username: "",
+  email: "",
+  password: "",
 };
+
+const onSubmit = async (values, actions) => {
+  try {
+    const formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+
+    console.log(formData);
+    console.log(actions);
+
+    const response = await fetch("http://localhost:6001/auth/register", {
+      method: "POST",
+      body: formData,
+    });
+
+    const savedUser = await response.json();
+    console.log(savedUser);
+    //wait new Promise((resolve) => setTimeout(resolve, 1000));
+    actions.resetForm();
+  } catch (error) {
+    console.log(error.message);
+  }
+}; //fix this, formData not getting right value? ?? ????
 
 const advancedForm = () => {
   return (
     <Formik
-      initialValues={{ email: "", password: "", acceptedTos: false }}
+      initialValues={{
+        username: "",
+        email: "",
+        password: "",
+        acceptedTos: false,
+      }}
       validationSchema={registerSchema}
       onSubmit={onSubmit}
     >
@@ -54,6 +83,11 @@ const advancedForm = () => {
         /* and other goodies */
       }) => (
         <Form>
+          <CustomInput
+            label='Username'
+            name='username'
+            type='text'
+          />
           <CustomInput
             label='Email'
             name='email'

@@ -8,7 +8,7 @@ const CustomInput = ({ name, ...props }) => {
   const configTextField = {
     ...field,
     ...props,
-    fullwidth: true,
+    fullWidth: true,
     variant: "outlined",
     sx: {
       margin: "0.7em 0",
