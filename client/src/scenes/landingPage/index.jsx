@@ -12,7 +12,8 @@ import {
 } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import NavBar from "../widgets/navBar";
-import Form from "./Form";
+import PopupComponent from "../../components/PopupComponent";
+import UserForm from "./UserForm";
 import StyledButton from "../../components/StyledButton";
 //min width 1000px for desktop, otherwise go to mobile view
 
@@ -22,7 +23,6 @@ const HomePage = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   }; //MAKE POPUP FEATURE A COMPONENT? HOW WOULD I HANDLE TOGGLE STATES? WOULD IT BE IN INDIVIUAL AREAS OR IS THE STATE IN THE COMPONENT ITSELF?
-  //ISSUE WITH FONTS, LOOK AT LOG IN AND SIGN UP FEATURE. THERE AR EDIFFERENT FONTS. NEEED FIXING
   return (
     <Box>
       <NavBar />
@@ -55,7 +55,10 @@ const HomePage = () => {
             <Typography variant='h2'>Another way to connect</Typography>
           </Grid>
           <Grid>
-            <StyledButton
+            <PopupComponent>
+              <UserForm />
+            </PopupComponent>
+            {/*  <StyledButton
               onClick={handleToggle}
               sx={{ fontSize: "1.2em" }}
             >
@@ -67,16 +70,15 @@ const HomePage = () => {
               PaperProps={{
                 style: {
                   width: "60%", // Adjust the width as needed
-                  height: "52%", // Adjust the height as needed
                   maxWidth: "none", // Remove maxWidth to prevent width restriction
                 },
               }}
             >
               <DialogTitle>Create your account</DialogTitle>
               <DialogContent>
-                <Form />
+                <UserForm />
               </DialogContent>
-            </Dialog>
+            </Dialog> */}
           </Grid>
         </Grid>
       </Grid>
