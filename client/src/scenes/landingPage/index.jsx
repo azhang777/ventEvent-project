@@ -16,73 +16,55 @@ import PopupComponent from "../../components/PopupComponent";
 import UserForm from "./UserForm";
 import StyledButton from "../../components/StyledButton";
 //min width 1000px for desktop, otherwise go to mobile view
-
+import TestContext from "./TestContext";
+import { FormTypeProvider } from "./formContext";
 const HomePage = () => {
   const [toggle, setToggle] = useState(false);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  }; //MAKE POPUP FEATURE A COMPONENT? HOW WOULD I HANDLE TOGGLE STATES? WOULD IT BE IN INDIVIUAL AREAS OR IS THE STATE IN THE COMPONENT ITSELF?
   return (
-    <Box>
-      <NavBar />
-      <Grid
-        container
-        spacing={2}
-      >
-        {/* Left Section */}
+    <FormTypeProvider>
+      <Box>
+        <NavBar />
         <Grid
-          item
-          xs={12}
-          md={6}
+          container
+          spacing={2}
         >
-          left
-        </Grid>
-
-        {/* Right Section */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-        >
+          {/* Left Section */}
           <Grid
-            container
-            direction='column'
-            alignItems='flex-start'
-            sx={{ margin: "60px 0" }}
+            item
+            xs={12}
+            md={6}
           >
-            <Typography variant='h1'>For Adventurers</Typography>
-            <Typography variant='h2'>Another way to connect</Typography>
+            <TestContext />
           </Grid>
-          <Grid>
-            <PopupComponent>
-              <UserForm />
-            </PopupComponent>
-            {/*  <StyledButton
-              onClick={handleToggle}
-              sx={{ fontSize: "1.2em" }}
+
+          {/* Right Section */}
+          <Grid
+            item
+            xs={12}
+            md={6}
+          >
+            <Grid
+              container
+              direction='column'
+              alignItems='flex-start'
+              sx={{ margin: "60px 0" }}
             >
-              Sign Up
-            </StyledButton>
-            <Dialog
-              open={toggle}
-              onClose={handleToggle}
-              PaperProps={{
-                style: {
-                  width: "60%", // Adjust the width as needed
-                  maxWidth: "none", // Remove maxWidth to prevent width restriction
-                },
-              }}
-            >
-              <DialogTitle>Create your account</DialogTitle>
-              <DialogContent>
+              <Typography variant='h1'>For Adventurers</Typography>
+              <Typography variant='h2'>Another way to connect</Typography>
+            </Grid>
+            <Grid>
+              <PopupComponent
+                label='Create an account'
+                type='register'
+              >
                 <UserForm />
-              </DialogContent>
-            </Dialog> */}
+              </PopupComponent>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </FormTypeProvider>
   );
 };
 

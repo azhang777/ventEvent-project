@@ -1,8 +1,13 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import StyledButton from "../../components/StyledButton";
 import MinimalButton from "../../components/MinimalButton";
+import PopupComponent from "../../components/PopupComponent";
+import UserForm from "../landingPage/UserForm";
+import { useFormType } from "../landingPage/formContext";
 
 const NavBar = () => {
+  const { formType, updateFormType } = useFormType();
+
   return (
     <AppBar
       position='static'
@@ -28,10 +33,14 @@ const NavBar = () => {
             <Typography variant='h6'>About</Typography>{" "}
             {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
           </MinimalButton>
-          {/* <MinimalButton disableRipple>FAQ</MinimalButton> */}
-          <StyledButton sx={{ margin: "2rem" }}>
-            <Typography variant='h6'>Log In</Typography>
-          </StyledButton>
+
+          <PopupComponent
+            label='Log in'
+            type='login'
+            sx={{ fontSize: "1em" }}
+          >
+            <UserForm />
+          </PopupComponent>
         </Box>
       </Toolbar>
     </AppBar>

@@ -8,21 +8,23 @@ import {
   DialogTitle,
 } from "@mui/material";
 import StyledButton from "./StyledButton";
-
-function PopupComponent({ children }) {
+import { useFormType } from "../scenes/landingPage/formContext";
+const PopupComponent = ({ label, type, sx = {}, children }) => {
+  const { formType, updateFormType } = useFormType();
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
+    updateFormType(type);
   };
 
   return (
     <div>
       <StyledButton
         onClick={handleToggle}
-        sx={{ fontSize: "1.2em" }}
+        sx={{ fontSize: "1.5em", ...sx }}
       >
-        Open Popup
+        {label}
       </StyledButton>
       <Dialog
         open={toggle}
@@ -39,6 +41,6 @@ function PopupComponent({ children }) {
       </Dialog>
     </div>
   );
-}
+};
 
 export default PopupComponent;

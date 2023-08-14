@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* import { useState } from "react"; */
+import { useFormType, FormTypeProvider } from "./formContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as yup from "yup"; //* imports everything from dependency
@@ -69,59 +70,67 @@ const onSubmit = async (values, actions) => {
                 onSubmit = async(values, actions) => {if register(try const responseData = await registerAPI(values) catch (error) else if login blah balh blah)} */
 
 const UserForm = () => {
-  const [pageType, setPageType] = useState("register");
+  /* const [pageType, setPageType] = useState("register"); */
+  const { formType } = useFormType();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLogin = pageType === "login";
-  const isRegister = pageType === "register";
-//pop up component needs to know whether its login or sign up for popup title use redux oorr useContext?
-//sign up and login buttons should also manage the pageType state.
+  const isLogin = formType === "login";
+  const isRegister = formType === "register";
+  /*   console.log(formType);
+  console.log(isLogin);
+  console.log(isRegister); */
+  //pop up component needs to know whether its login or sign up for popup title use redux oorr useContext? NO It doesn't need to know!
+  //sign up and login buttons should also manage the pageType state.
   return (
-    <Formik
-      initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
-      validationSchema={isLogin ? loginSchema : registerSchema}
-      onSubmit={onSubmit}
-    >
-      {({
-        isSubmitting,
-        /* and other goodies */
-      }) => (
-        <Form>
-          {isRegister && (
+    <FormTypeProvider>
+      <Formik
+        initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
+        validationSchema={isLogin ? loginSchema : registerSchema}
+        onSubmit={onSubmit}
+      >
+        {({
+          isSubmitting,
+          /* and other goodies */
+        }) => (
+          <Form>
+            {isRegister && (
+              <CustomInput
+                label='Username'
+                name='username'
+                type='text'
+              /> //renders username input if registering
+            )}
             <CustomInput
-              label='Username'
-              name='username'
+              label='Email'
+              name='email'
               type='text'
-            /> //renders username input if registering
-          )}
-          <CustomInput
-            label='Email'
-            name='email'
-            type='text'
-          />
-          <CustomInput
-            label='Password'
-            name='password'
-            type='password'
-          />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <CustomCheckbox
-              name='acceptedTos'
-              legend='Terms of Service'
-              label='I agree'
             />
-            <CustomSubmit>Register</CustomSubmit>
-          </Box>
-        </Form>
-      )}
-    </Formik>
+            <CustomInput
+              label='Password'
+              name='password'
+              type='password'
+            />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
+              {isRegister && (
+                <CustomCheckbox
+                  name='acceptedTos'
+                  legend='Terms of Service'
+                  label='I agree'
+                />
+              )}
+              <CustomSubmit>{isRegister ? "Register" : "Log in"}</CustomSubmit>
+            </Box>
+          </Form>
+        )}
+      </Formik>
+    </FormTypeProvider>
   );
 };
 
