@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import StyledButton from "./StyledButton";
 import { useFormType } from "../scenes/landingPage/formContext";
+
 const PopupComponent = ({ label, type, sx = {}, children }) => {
   const { formType, updateFormType } = useFormType();
   const [toggle, setToggle] = useState(false);
@@ -31,12 +32,14 @@ const PopupComponent = ({ label, type, sx = {}, children }) => {
         onClose={handleToggle}
         PaperProps={{
           style: {
-            width: "60%", // Adjust the width as needed
-            maxWidth: "none", // Remove maxWidth to prevent width restriction
+            width: "40%", // Adjust the width as needed
+            minWidth: "500px", // Remove maxWidth to prevent width restriction
           },
         }}
       >
-        <DialogTitle>USESTATE Create your account / Log in</DialogTitle>
+        <DialogTitle>
+          {formType === "register" ? "Create your account" : "Log in"}
+        </DialogTitle>
         <DialogContent>{children}</DialogContent>
       </Dialog>
     </div>

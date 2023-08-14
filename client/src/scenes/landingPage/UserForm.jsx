@@ -2,6 +2,7 @@
 import { useFormType, FormTypeProvider } from "./formContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setLogin } from "../../state";
 import * as yup from "yup"; //* imports everything from dependency
 import { Field, Form, Formik } from "formik";
 import CustomInput from "../../components/CustomInput";
@@ -47,8 +48,70 @@ const initialValuesLogin = {
   password: "",
 };
 
-const onSubmit = async (values, actions) => {
-  try {
+const UserForm = () => {
+  /* const [pageType, setPageType] = useState("register"); */
+  const { formType } = useFormType();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isLogin = formType === "login";
+  const isRegister = formType === "register";
+
+  const registerAPI = async (values, actions) => {
+    console.log(values);
+    console.log(actions);
+    const response = await fetch("http://localhost:6001/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    return response;
+  };
+
+  const loginAPI = async (values, actions) => {
+    console.log(values);
+    console.log(actions);
+    const response = await fetch("http://localhost:6001/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    return response;
+  }; //do these fetch calls need try catch blocks to handle errors?
+  // it is recommended!
+  const onSubmit = async (values, actions) => {
+    if (isRegister) {
+      try {
+        const response = await registerAPI(values, actions);
+        const newUser = await response.json();
+        console.log(newUser);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        const response = await loginAPI(values, actions);
+        const loggedUser = await response.json();
+        console.log(loggedUser.user);
+        console.log("Auth Token: " + loggedUser.token);
+        if (loggedUser) {
+          dispatch(
+            setLogin({
+              user: loggedUser.user,
+              token: loggedUser.token,
+            })
+          );
+          navigate("/home");
+          /*We must interact with redux to store in user authentication token and their information. Then navigate to home*/
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    actions.resetForm();
+    /* try {
     console.log(values);
     console.log(actions);
     const response = await fetch("http://localhost:6001/auth/register", {
@@ -64,24 +127,9 @@ const onSubmit = async (values, actions) => {
     actions.resetForm();
   } catch (error) {
     console.log(error.message);
-  }
-}; /* refactor by separating API method and onSubmit method? That way we can have onSubmit handle registerAPI and loginAPI based on condition
-      example:  registerAPI = async(values) => try line 49-55 return response catch(error) throw new Error
-                onSubmit = async(values, actions) => {if register(try const responseData = await registerAPI(values) catch (error) else if login blah balh blah)} */
+  } */
+  };
 
-const UserForm = () => {
-  /* const [pageType, setPageType] = useState("register"); */
-  const { formType } = useFormType();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const isLogin = formType === "login";
-  const isRegister = formType === "register";
-  /*   console.log(formType);
-  console.log(isLogin);
-  console.log(isRegister); */
-  //pop up component needs to know whether its login or sign up for popup title use redux oorr useContext? NO It doesn't need to know!
-  //sign up and login buttons should also manage the pageType state.
   return (
     <FormTypeProvider>
       <Formik
