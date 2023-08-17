@@ -6,8 +6,6 @@ import UserForm from "../landingPage/UserForm";
 import { useFormType } from "../landingPage/formContext";
 
 const NavBar = () => {
-  const { formType, updateFormType } = useFormType();
-
   return (
     <AppBar
       position='static'
@@ -17,18 +15,18 @@ const NavBar = () => {
         sx={{
           color: "black",
           backgroundColor: "transparent",
-          height: "100px",
-          fontWeight: "100px",
-          padding: "0.5rem",
+          height: "9vh",
+          fontWeight: "14vw",
+          padding: "0.5rem 1rem 0.5rem 2rem",
         }}
       >
         <Typography
-          variant='h3'
+          variant='h2'
           flexGrow={1}
         >
           ventEvent
         </Typography>
-        <Box sx={{ display: "flex", gap: "1rem" }}>
+        <Box sx={{ display: "flex", gap: "3rem", paddingRight: "3rem" }}>
           <MinimalButton disableRipple>
             <Typography variant='h6'>About</Typography>{" "}
             {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
@@ -37,7 +35,7 @@ const NavBar = () => {
           <PopupComponent
             label='Log in'
             type='login'
-            sx={{ fontSize: "1em" }}
+            sx={{ fontSize: "1.5em" }}
           >
             <UserForm />
           </PopupComponent>

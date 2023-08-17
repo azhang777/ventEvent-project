@@ -5,13 +5,13 @@ export const themeSettings = createTheme({
   typography: {
     h1: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: "5em",
+      fontSize: "5vw",
       fontWeight: 700,
       letterSpacing: 2,
     },
     h2: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: "3em",
+      fontSize: "3vw",
       fontWeight: 700,
     },
     h3: {

@@ -81,6 +81,7 @@ const UserForm = () => {
     return response;
   }; //do these fetch calls need try catch blocks to handle errors?
   // it is recommended!
+
   const onSubmit = async (values, actions) => {
     if (isRegister) {
       try {
@@ -111,23 +112,6 @@ const UserForm = () => {
       }
     }
     actions.resetForm();
-    /* try {
-    console.log(values);
-    console.log(actions);
-    const response = await fetch("http://localhost:6001/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
-
-    const savedUser = await response.json();
-    console.log(savedUser);
-    actions.resetForm();
-  } catch (error) {
-    console.log(error.message);
-  } */
   };
 
   return (

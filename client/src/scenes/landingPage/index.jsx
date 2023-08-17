@@ -48,7 +48,7 @@ const HomePage = () => {
               container
               direction='column'
               alignItems='flex-start'
-              sx={{ margin: "60px 0" }}
+              sx={{ margin: "15vh 0 3vh 0" }}
             >
               <Typography variant='h1'>For Adventurers</Typography>
               <Typography variant='h2'>Another way to connect</Typography>
