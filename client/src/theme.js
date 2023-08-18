@@ -16,21 +16,23 @@ export const themeSettings = createTheme({
     },
     h3: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: "2.5em",
+      fontSize: "2.5vw",
       fontWeight: 700,
     },
     h4: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: "1em",
+      fontSize: "2vw",
+      fontWeight: 700,
     },
     h5: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 16,
+      fontSize: "1.5vw",
+      fontWeight: 700,
     },
     h6: {
       fontFamily: ["Arial", "Lato"],
-      fontSize: 14,
-      fontWeight: 1000,
+      fontSize: ".8vw",
+      fontWeight: 700,
     },
   },
 });

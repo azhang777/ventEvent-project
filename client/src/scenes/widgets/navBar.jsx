@@ -21,14 +21,14 @@ const NavBar = () => {
         }}
       >
         <Typography
-          variant='h2'
+          variant='h3'
           flexGrow={1}
         >
           ventEvent
         </Typography>
         <Box sx={{ display: "flex", gap: "3rem", paddingRight: "3rem" }}>
           <MinimalButton disableRipple>
-            <Typography variant='h6'>About</Typography>{" "}
+            <Typography variant='h6'>About</Typography>
             {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
           </MinimalButton>
 

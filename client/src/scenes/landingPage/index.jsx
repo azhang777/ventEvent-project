@@ -18,9 +18,8 @@ import StyledButton from "../../components/StyledButton";
 //min width 1000px for desktop, otherwise go to mobile view
 import TestContext from "./TestContext";
 import { FormTypeProvider } from "./formContext";
-const HomePage = () => {
-  const [toggle, setToggle] = useState(false);
 
+const LandingPage = () => {
   return (
     <FormTypeProvider>
       <Box>
@@ -70,4 +69,4 @@ const HomePage = () => {
 
 //https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 //https://m2.material.io/design/layout/responsive-layout-grid.html#breakpoints
-export default HomePage;
+export default LandingPage;
