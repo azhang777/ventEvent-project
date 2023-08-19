@@ -58,6 +58,66 @@ const UserForm = () => {
   const isRegister = formType === "register";
 
   const registerAPI = async (values, actions) => {
+    try {
+      console.log(values);
+      console.log(actions);
+
+      const response = await fetch("http://localhost:6001/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        // Handle non-successful response (e.g., status code other than 200)
+        throw new Error(`Registration failed with status ${response.status}`);
+      }
+
+      // Handle the response data (e.g., parsing JSON)
+      // const data = await response.json();
+
+      // You can perform additional actions here with the response data
+
+      return response;
+    } catch (error) {
+      // Handle any errors that occurred during the request
+      console.error("Registration error:", error);
+      // You can also update your UI or take other appropriate actions in case of an error
+      throw error; // Rethrow the error to propagate it up the call stack if needed
+    }
+  };
+
+  const loginAPI = async (values, actions) => {
+    try {
+      console.log(values);
+      console.log(actions);
+
+      const response = await fetch("http://localhost:6001/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        // Handle non-successful response (e.g., status code other than 200)
+        throw new Error(`Login failed with status ${response.status}`);
+      }
+
+      // Handle the response data (e.g., parsing JSON)
+      // const data = await response.json();
+
+      // You can perform additional actions here with the response data
+      return response;
+    } catch (error) {
+      // Handle any errors that occurred during the request
+      console.error("Login error:", error);
+      // You can also update your UI or take other appropriate actions in case of an error
+      throw error; // Rethrow the error to propagate it up the call stack if needed
+    }
+  };
+  /*   const registerAPI = async (values, actions) => {
     console.log(values);
     console.log(actions);
     const response = await fetch("http://localhost:6001/auth/register", {
@@ -73,6 +133,7 @@ const UserForm = () => {
   const loginAPI = async (values, actions) => {
     console.log(values);
     console.log(actions);
+
     const response = await fetch("http://localhost:6001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -80,7 +141,7 @@ const UserForm = () => {
     });
     return response;
   }; //do these fetch calls need try catch blocks to handle errors?
-  // it is recommended!
+  // it is recommended! */
 
   const onSubmit = async (values, actions) => {
     if (isRegister) {
