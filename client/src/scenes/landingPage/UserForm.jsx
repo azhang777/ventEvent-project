@@ -117,31 +117,6 @@ const UserForm = () => {
       throw error; // Rethrow the error to propagate it up the call stack if needed
     }
   };
-  /*   const registerAPI = async (values, actions) => {
-    console.log(values);
-    console.log(actions);
-    const response = await fetch("http://localhost:6001/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
-    return response;
-  };
-
-  const loginAPI = async (values, actions) => {
-    console.log(values);
-    console.log(actions);
-
-    const response = await fetch("http://localhost:6001/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    return response;
-  }; //do these fetch calls need try catch blocks to handle errors?
-  // it is recommended! */
 
   const onSubmit = async (values, actions) => {
     if (isRegister) {

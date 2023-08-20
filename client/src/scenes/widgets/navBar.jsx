@@ -4,6 +4,7 @@ import MinimalButton from "../../components/MinimalButton";
 import PopupComponent from "../../components/PopupComponent";
 import UserForm from "../landingPage/UserForm";
 import { useSelector } from "react-redux";
+import FlexBetween from "../../components/FlexBetween";
 const NavBar = () => {
   const token = useSelector((state) => state.token);
   const returningUser = Boolean(token); //needed to retrieve state in navbar because if we do it in popup component, state will not be retrieved until popup component is clicked.
@@ -18,9 +19,9 @@ const NavBar = () => {
         sx={{
           color: "black",
           backgroundColor: "transparent",
-          height: "9vh",
+          height: "4em",
           fontWeight: "14vw",
-          padding: "0.5rem 1rem 0.5rem 2rem",
+          padding: "0.5em 1em 0.5em 2em",
         }}
       >
         <Typography
@@ -29,7 +30,7 @@ const NavBar = () => {
         >
           ventEvent
         </Typography>
-        <Box sx={{ display: "flex", gap: "3rem", paddingRight: "3rem" }}>
+        <FlexBetween sx={{ gap: "1.5em" }}>
           <MinimalButton disableRipple>
             <Typography variant='h5'>About</Typography>
             {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
@@ -44,7 +45,7 @@ const NavBar = () => {
             {/*SINCE LOG IN BUTTON IS IN THE NAV BAR AND REGISTER BUTTON IS IN INDEX, check comment in popup component line 35 */}
             <UserForm />
           </PopupComponent>
-        </Box>
+        </FlexBetween>
       </Toolbar>
     </AppBar>
   );

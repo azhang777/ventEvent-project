@@ -1,20 +1,7 @@
-import { useState } from "react";
-import {
-  Typography,
-  Box,
-  styled,
-  Grid,
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-} from "@mui/material";
-import FlexBetween from "../../components/FlexBetween";
+import { Typography, Box, Grid } from "@mui/material";
 import NavBar from "../widgets/navBar";
 import PopupComponent from "../../components/PopupComponent";
 import UserForm from "./UserForm";
-import StyledButton from "../../components/StyledButton";
 //min width 1000px for desktop, otherwise go to mobile view
 import TestContext from "./TestContext";
 import { FormTypeProvider } from "./formContext";
@@ -22,8 +9,13 @@ import { FormTypeProvider } from "./formContext";
 const LandingPage = () => {
   return (
     <FormTypeProvider>
-      <Box>
-        <NavBar />
+      <NavBar />
+      <Box
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        minHeight='50vh'
+      >
         <Grid
           container
           spacing={2}
@@ -47,7 +39,7 @@ const LandingPage = () => {
               container
               direction='column'
               alignItems='flex-start'
-              sx={{ margin: "15vh 0 3vh 0" }}
+              sx={{ margin: "15vh 0 2vh 0" }}
             >
               <Typography variant='h1'>For Adventurers</Typography>
               <Typography variant='h2'>Another way to connect</Typography>

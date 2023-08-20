@@ -7,7 +7,7 @@ const Home = () => {
     <Box>
       <Typography variant='h4'>Welcome Home, {username}!</Typography>
       <Typography variant='h4'>
-        Your authentication status is currently, {token ? true : false}
+        Your authentication status is currently {token ? "active" : "unactive"}
       </Typography>
     </Box>
   );

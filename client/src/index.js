@@ -40,9 +40,7 @@ root.render(
       loading={null}
       persistor={persistStore(store)}
     >
-      <ThemeProvider theme={themeSettings}>
-        <App />
-      </ThemeProvider>
+      <App />
     </PersistGate>
   </Provider>
 );
