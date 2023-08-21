@@ -1,5 +1,5 @@
 import { Typography, Box, Grid } from "@mui/material";
-import NavBar from "../widgets/navBar";
+import NavBar from "../widgets/NavBar";
 import PopupComponent from "../../components/PopupComponent";
 import UserForm from "./UserForm";
 //min width 1000px for desktop, otherwise go to mobile view
@@ -9,7 +9,11 @@ import { FormTypeProvider } from "./formContext";
 const LandingPage = () => {
   return (
     <FormTypeProvider>
-      <NavBar />
+      <NavBar
+        scene='landing'
+        label='login'
+        type='login'
+      />
       <Box
         display='flex'
         alignItems='center'

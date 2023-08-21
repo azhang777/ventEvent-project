@@ -12,6 +12,7 @@ const FormTypeProvider = ({ children }) => {
   const updateFormType = (newValue) => {
     setFormType(newValue);
   };
+  
   return (
     <FormContext.Provider value={{ formType, updateFormType }}>
       {children}

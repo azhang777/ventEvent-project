@@ -1,4 +1,3 @@
-/* import { useState } from "react"; */
 import { useFormType, FormTypeProvider } from "./formContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -7,9 +6,9 @@ import * as yup from "yup"; //* imports everything from dependency
 import { Field, Form, Formik } from "formik";
 import CustomInput from "../../components/CustomInput";
 import CustomCheckbox from "../../components/CustomCheckbox";
-//import CustomSelect from "../../components/CustomSelect";
 import CustomSubmit from "../../components/CustomSubmit";
 import { Box } from "@mui/material";
+
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 const registerSchema = yup.object().shape({

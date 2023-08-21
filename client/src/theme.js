@@ -6,34 +6,39 @@ export const themeSettings = createTheme({
     h1: {
       fontFamily: ["Arial", "Lato"],
       fontSize: "5em",
-
       fontWeight: 700,
       letterSpacing: 2,
+      whiteSpace: "nowrap",
     },
     h2: {
       fontFamily: ["Arial", "Lato"],
       fontSize: "3em",
       fontWeight: 700,
+      whiteSpace: "nowrap",
     },
     h3: {
       fontFamily: ["Arial", "Lato"],
       fontSize: "2.5em",
       fontWeight: 700,
+      whiteSpace: "nowrap",
     },
     h4: {
       fontFamily: ["Arial", "Lato"],
       fontSize: "2em",
       fontWeight: 700,
+      whiteSpace: "nowrap",
     },
     h5: {
       fontFamily: ["Arial", "Lato"],
       fontSize: "1.5em",
       fontWeight: 700,
+      whiteSpace: "nowrap",
     },
     h6: {
       fontFamily: ["Arial", "Lato"],
       fontSize: ".8em",
       fontWeight: 700,
+      whiteSpace: "nowrap",
     },
   },
 

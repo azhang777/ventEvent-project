@@ -5,7 +5,7 @@ import PopupComponent from "../../components/PopupComponent";
 import UserForm from "../landingPage/UserForm";
 import { useSelector } from "react-redux";
 import FlexBetween from "../../components/FlexBetween";
-const NavBar = () => {
+const NavBar = ({ scene }) => {
   const token = useSelector((state) => state.token);
   const returningUser = Boolean(token); //needed to retrieve state in navbar because if we do it in popup component, state will not be retrieved until popup component is clicked.
   //this would mean that we would have to click login button twice for authenicated users to automatically log in.
@@ -31,20 +31,26 @@ const NavBar = () => {
           ventEvent
         </Typography>
         <FlexBetween sx={{ gap: "1.5em" }}>
-          <MinimalButton disableRipple>
-            <Typography variant='h5'>About</Typography>
-            {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
-          </MinimalButton>
+          {scene === "landing" && (
+            <MinimalButton disableRipple>
+              <Typography variant='h5'>About</Typography>
+              {/*write an about for this project, the purpose of the site, your goals, and the audience/users you want to cultivate */}
+            </MinimalButton>
+          )}
 
-          <PopupComponent
-            label='Log in'
-            type='login'
-            sx={{ fontSize: "1.5em" }}
-            returningUser={returningUser}
-          >
-            {/*SINCE LOG IN BUTTON IS IN THE NAV BAR AND REGISTER BUTTON IS IN INDEX, check comment in popup component line 35 */}
-            <UserForm />
-          </PopupComponent>
+          {scene === "home" ? (
+            "homepage"
+          ) : (
+            <PopupComponent
+              label='Log in'
+              type='login'
+              sx={{ fontSize: "1.5em" }}
+              returningUser={returningUser}
+            >
+              {/*SINCE LOG IN BUTTON IS IN THE NAV BAR AND REGISTER BUTTON IS IN INDEX, check comment in popup component line 35 */}
+              <UserForm />
+            </PopupComponent>
+          )}
         </FlexBetween>
       </Toolbar>
     </AppBar>
