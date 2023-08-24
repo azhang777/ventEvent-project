@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import StyledButton from "./StyledButton";
 import { useFormType } from "../scenes/landingPage/formContext";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const PopupComponent = ({ label, type, sx = {}, returningUser, children }) => {
@@ -32,7 +31,7 @@ const PopupComponent = ({ label, type, sx = {}, returningUser, children }) => {
   return (
     <div>
       <StyledButton
-        onClick={returningUser ? handleReturningUser : handleToggle} //WE DO NOT NEED TO CHECK returningUser && formType === "login"! Thats greatttt! 
+        onClick={returningUser ? handleReturningUser : handleToggle} //WE DO NOT NEED TO CHECK returningUser && formType === "login"! Thats greatttt!
         sx={{ fontSize: "1.5em", ...sx }}
       >
         {label}

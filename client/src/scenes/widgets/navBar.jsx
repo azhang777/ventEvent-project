@@ -1,10 +1,10 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
-import StyledButton from "../../components/StyledButton";
 import MinimalButton from "../../components/MinimalButton";
 import PopupComponent from "../../components/PopupComponent";
 import UserForm from "../landingPage/UserForm";
-import { useSelector } from "react-redux";
 import FlexBetween from "../../components/FlexBetween";
+import LogoutButton from "../../components/LogoutButton";
+import { useSelector } from "react-redux";
 const NavBar = ({ scene }) => {
   const token = useSelector((state) => state.token);
   const returningUser = Boolean(token); //needed to retrieve state in navbar because if we do it in popup component, state will not be retrieved until popup component is clicked.
@@ -39,7 +39,7 @@ const NavBar = ({ scene }) => {
           )}
 
           {scene === "home" ? (
-            "homepage"
+            <LogoutButton sx={{ fontSize: "1.5em" }} />
           ) : (
             <PopupComponent
               label='Log in'

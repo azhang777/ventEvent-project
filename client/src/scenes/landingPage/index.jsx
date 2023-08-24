@@ -52,6 +52,7 @@ const LandingPage = () => {
               <PopupComponent
                 label='Create an account'
                 type='register'
+                sx={{ maxWidth: "350px" }}
               >
                 <UserForm />
               </PopupComponent>
