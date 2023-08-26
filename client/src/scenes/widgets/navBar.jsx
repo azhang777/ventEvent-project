@@ -39,12 +39,17 @@ const NavBar = ({ scene }) => {
           )}
 
           {scene === "home" ? (
-            <LogoutButton sx={{ fontSize: "1.5em" }} />
+            //<LogoutButton sx={{ fontSize: "1.5em" }} />
+            <PopupComponent
+              label='Log out'
+              type='logout'
+            >
+              <LogoutButton />
+            </PopupComponent>
           ) : (
             <PopupComponent
               label='Log in'
               type='login'
-              sx={{ fontSize: "1.5em" }}
               returningUser={returningUser}
             >
               {/*SINCE LOG IN BUTTON IS IN THE NAV BAR AND REGISTER BUTTON IS IN INDEX, check comment in popup component line 35 */}

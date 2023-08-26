@@ -26,7 +26,7 @@ export const getAllUsers = async (req, res) => {
     const users = await User.find();
 
     if (!users || users.length === 0) {
-      return res.status(400).json({ message: "No users found" });
+      return res.status(401).json({ message: "No users found" });
     }
 
     const usersNoPassword = users.map((user) => {

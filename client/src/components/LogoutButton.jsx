@@ -14,10 +14,10 @@ const LogoutButton = ({ ...sx }) => {
 
   return (
     <StyledButton
-      sx={{ fontSize: "1.5em", ...sx }}
+      sx={{ fontSize: "0.4em", ...sx }}
       onClick={handleLogout} //don't use handleLogout() -> the parenthesis trigger the function and thats why you kept getting logged out when trying to log in.
     >
-      Log out
+      Yes
     </StyledButton>
   );
 };
