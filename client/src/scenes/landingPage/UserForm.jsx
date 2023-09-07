@@ -88,7 +88,7 @@ const UserForm = () => {
     }
   };
 
-  const loginAPI = async (values, actions) => {
+  const loginAPI = async (values, actions, { setSubmitting, setErrors }) => {
     try {
       console.log(values);
       console.log(actions);
@@ -122,7 +122,7 @@ const UserForm = () => {
       try {
         const response = await registerAPI(values, actions);
         const newUser = await response.json();
-        console.log(newUser);
+        //console.log(newUser);
       } catch (error) {
         console.error(error);
       }
@@ -130,8 +130,7 @@ const UserForm = () => {
       try {
         const response = await loginAPI(values, actions);
         const loggedUser = await response.json();
-        console.log(loggedUser.user);
-        console.log("Auth Token: " + loggedUser.token);
+        //console.log(loggedUser.user);
         if (loggedUser) {
           dispatch(
             setLogin({
@@ -149,6 +148,7 @@ const UserForm = () => {
     actions.resetForm();
   };
 
+  //i need to use the error to render some error component that the user can see when they enter email/password wrong.
   return (
     <FormTypeProvider>
       <Formik
