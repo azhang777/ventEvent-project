@@ -48,7 +48,6 @@ const initialValuesLogin = {
 };
 
 const UserForm = () => {
-  /* const [pageType, setPageType] = useState("register"); */
   const { formType } = useFormType();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,95 +56,110 @@ const UserForm = () => {
   const isRegister = formType === "register";
 
   const registerAPI = async (values, actions) => {
-    try {
-      console.log(values);
-      console.log(actions);
+    const response = await fetch("http://localhost:6001/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
 
-      const response = await fetch("http://localhost:6001/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+    if (!response.ok) {
+      throw new Error(`Registration failed with status ${response.status}`);
+    }
 
-      if (!response.ok) {
-        // Handle non-successful response (e.g., status code other than 200)
-        throw new Error(`Registration failed with status ${response.status}`);
-      }
+    // Handle the response data (e.g., parsing JSON)
+    // const data = await response.json();
 
-      // Handle the response data (e.g., parsing JSON)
-      // const data = await response.json();
+    // You can perform additional actions here with the response data
 
-      // You can perform additional actions here with the response data
-
-      return response;
-    } catch (error) {
+    return response;
+    /*     } catch (error) {
       // Handle any errors that occurred during the request
       console.error("Registration error:", error);
       // You can also update your UI or take other appropriate actions in case of an error
       throw error; // Rethrow the error to propagate it up the call stack if needed
-    }
+    } */
   };
 
-  const loginAPI = async (values, actions, { setSubmitting, setErrors }) => {
-    try {
-      console.log(values);
-      console.log(actions);
+  const loginAPI = async (values, actions) => {
+    console.log(values);
+    console.log(actions);
 
-      const response = await fetch("http://localhost:6001/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+    const response = await fetch("http://localhost:6001/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    if (!response.ok) {
+      // Handle non-successful response (e.g., status code other than 200)
+      throw new Error(`Login failed with status ${response.status}`);
+    }
 
-      if (!response.ok) {
-        // Handle non-successful response (e.g., status code other than 200)
-        throw new Error(`Login failed with status ${response.status}`);
-      }
+    // Handle the response data (e.g., parsing JSON)
+    // const data = await response.json();
 
-      // Handle the response data (e.g., parsing JSON)
-      // const data = await response.json();
-
-      // You can perform additional actions here with the response data
-      return response;
-    } catch (error) {
+    // You can perform additional actions here with the response data
+    return response;
+    /*     } catch (error) {
       // Handle any errors that occurred during the request
       console.error("Login error:", error);
       // You can also update your UI or take other appropriate actions in case of an error
       throw error; // Rethrow the error to propagate it up the call stack if needed
-    }
+    } */
   };
 
+  //CENTRALIZE ERROR HANDLING TO ONSUBMIT
   const onSubmit = async (values, actions) => {
-    if (isRegister) {
-      try {
-        const response = await registerAPI(values, actions);
-        const newUser = await response.json();
-        //console.log(newUser);
-      } catch (error) {
-        console.error(error);
+    try {
+      let responseData;
+      if (isLogin) {
+        responseData = await loginAPI(values, actions);
+        let loggedUser = await responseData.json();
+        dispatch(
+          setLogin({
+            user: loggedUser.user,
+            token: loggedUser.token,
+          })
+        );
+        navigate("/home");
+        //catch errors of failing login (invalid username + password combo)
+      } else {
+        responseData = await registerAPI(values, actions);
+        //catch errors of failing register (username already taken etc)
       }
-    } else {
-      try {
-        const response = await loginAPI(values, actions);
-        const loggedUser = await response.json();
-        //console.log(loggedUser.user);
-        if (loggedUser) {
-          dispatch(
-            setLogin({
-              user: loggedUser.user,
-              token: loggedUser.token,
-            })
-          );
-          navigate("/home");
-          /*We must interact with redux to store in user authentication token and their information. Then navigate to home*/
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      actions.resetForm();
+    } catch (error) {
+      console.error("API error", error);
     }
-    actions.resetForm();
+    // if (isRegister) {
+    //   try {
+    //     const response = await registerAPI(values, actions);
+    //     const newUser = await response.json();
+    //     //console.log(newUser);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // } else {
+    //   try {
+    //     const response = await loginAPI(values, actions);
+    //     const loggedUser = await response.json();
+    //     //console.log(loggedUser.user);
+    //     if (loggedUser) {
+    //       dispatch(
+    //         setLogin({
+    //           user: loggedUser.user,
+    //           token: loggedUser.token,
+    //         })
+    //       );
+    //       navigate("/home");
+    //       /*We must interact with redux to store in user authentication token and their information. Then navigate to home*/
+    //     }
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+    // actions.resetForm();
   };
 
   //i need to use the error to render some error component that the user can see when they enter email/password wrong.
